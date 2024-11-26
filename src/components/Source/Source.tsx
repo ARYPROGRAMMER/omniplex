@@ -12,10 +12,12 @@ import {
   SearchType,
   StockType,
   WeatherType,
+  UrlShortType,
   DictionaryType,
 } from "@/utils/types";
 
 import SourceLogo from "../../../public/svgs/Source.svg";
+import UrlShortener from "../UrlShortener/UrlShortener";
 
 type Props = {
   mode: string;
@@ -23,6 +25,8 @@ type Props = {
   searchResults?: SearchType;
   stockResults?: StockType;
   weatherResults?: WeatherType;
+  urlShortResults: UrlShortType;
+  
   dictionaryResults?: DictionaryType;
 };
 
@@ -57,6 +61,11 @@ const Source = (props: Props) => {
         {props.mode === "weather" && (
           <div className={styles.sourceRow}>
             <Weather weatherResults={props.weatherResults} />
+          </div>
+        )}
+        {props.mode === "urlshort" && (
+          <div className={styles.sourceRow}>
+            <UrlShortener urlShortenerResults={props.urlShortResults} />
           </div>
         )}
 

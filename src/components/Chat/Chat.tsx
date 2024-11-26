@@ -16,6 +16,7 @@ import {
   updateSearch,
   updateStock,
   updateWeather,
+  urlshorted,
 } from "@/store/chatSlice";
 import { Chat as ChatType } from "../../utils/types";
 import { generateCitations } from "../../utils/utils";
@@ -223,6 +224,18 @@ const Chat = (props: Props) => {
               return;
             }
           }
+          if (lastChat.mode === "urlshort" && !lastChat.urlShortResults) {
+            try {
+              console.log("lastChat.arg.location", lastChat.arg.location);
+              await handleWeather(lastChat.arg.location, lastChatIndex);
+            } catch (error) {
+              setError("Error fetching or processing search results");
+              setErrorFunction(() =>
+                handleWeather.bind(null, lastChat.arg.location, lastChatIndex)
+              );
+              return;
+            }
+          }
 
           if (lastChat.mode === "stock" && !lastChat.stocksResults) {
             try {
@@ -384,6 +397,42 @@ const Chat = (props: Props) => {
       setErrorFunction(() => handleWeather.bind(null, location, chatIndex));
     }
   };
+  const handleurl = async (url: string, chatIndex: number) => {
+    const chat = chatThread?.chats[chatIndex];
+    setIsLoading(true);
+    setIsCompleted(false);
+
+    try {
+      if (chat?.mode === "urlshort") {
+        const response = await fetch(
+          `/api/urlshort/${encodeURIComponent(url)}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to generate data");
+        }
+
+        const urlshortdata = await response.json();
+        console.log("Generated Data:", urlshortdata);
+
+        dispatch(
+          urlshorted({
+            threadId: id,
+            chatIndex,
+            urlShortResults: urlshortdata,
+          })
+        );
+        setError("");
+        await handleAnswer(chat, JSON.stringify(urlshortdata));
+      } else {
+        throw new Error("Mode is not urlshort");
+      }
+    } catch (error) {
+      console.error("Error fetching or processing generate data:", error);
+      setError("Error fetching or processing generate data");
+      setErrorFunction(() => handleurl.bind(null, url, chatIndex));
+    }
+  };
 
   const handleStock = async (stock: string, chatIndex: number) => {
     const chat = chatThread?.chats[chatIndex];
@@ -434,7 +483,7 @@ const Chat = (props: Props) => {
         );
 
         if (!response.ok) {
-          throw new Error("Failed to fetch weather data");
+          throw new Error("Failed to fetch dictionary data");
         }
 
         const dictionaryData = await response.json();
@@ -505,6 +554,7 @@ const Chat = (props: Props) => {
                 searchResults={chat.searchResults}
                 stockResults={chat.stocksResults}
                 weatherResults={chat.weatherResults}
+                urlShortResults={chat.urlShortResults!}
                 dictionaryResults={chat.dictionaryResults}
               />
               <Answer

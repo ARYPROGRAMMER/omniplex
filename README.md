@@ -157,6 +157,7 @@ export const MODELS = [
 - LLM: OpenAI
 - Search API: Bing
 - Weather API: OpenWeatherMap
+- Url Shortener API: RapidAPI
 - Stocks API: Alpha Vantage & Finnhub
 - Dictionary API: WordnikFree Dictionary API
 - Hosting & Analytics: Vercel

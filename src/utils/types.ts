@@ -9,6 +9,7 @@ export type Mode =
   | "image"
   | "stock"
   | "weather"
+  | "urlshort"
   | "dictionary"
   | "";
 
@@ -48,6 +49,7 @@ export type Chat = {
   searchResults?: SearchType;
   stocksResults?: StockType;
   weatherResults?: WeatherType;
+  urlShortResults? : UrlShortType;
   dictionaryResults?: DictionaryType;
 };
 
@@ -119,6 +121,11 @@ export type WeatherType = {
     maxTemp: number;
     minTemp: number;
   };
+};
+
+export type UrlShortType = {
+  city: string;
+  Response: string
 };
 
 export type DictionaryType = {

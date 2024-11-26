@@ -1,0 +1,32 @@
+.urlShortenerContainer {
+    @apply flex flex-col gap-4;
+  }
+  
+  .urlRow {
+    @apply flex flex-col gap-2;
+  }
+  
+  .originalUrl {
+    @apply text-sm;
+  }
+  
+  .shortenedUrl {
+    @apply text-sm font-semibold;
+  }
+  
+  .alias {
+    @apply text-sm italic;
+  }
+  
+  .skeletonOriginalUrl {
+    @apply rounded bg-gray-300;
+  }
+  
+  .skeletonShortenedUrl {
+    @apply rounded bg-gray-300;
+  }
+  
+  .skeletonAlias {
+    @apply rounded bg-gray-300;
+  }
+  

@@ -11,6 +11,7 @@ export const handleMode = async (text: string) => {
             "If the user wants to search for information, use search function." +
             "If the user wants to get stock information, use stock function." +
             "If the user wants to get weather information, use weather function." +
+            "If the user wants to shorten the url, use url_shortener function." +
             "If the user wants to get dictionary information, use dictionary function.",
         },
         { role: "user", content: text },

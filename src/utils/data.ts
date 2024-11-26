@@ -75,6 +75,13 @@ export const PLUGINS = [
     comingSoon: false,
     url: "/plugins/weather",
     description: "Weather forecast",
+  },  
+  {
+    tag: "Built In",
+    name: "Url",
+    comingSoon: false,
+    url: "/plugins/urlshort",
+    description: "Url Shortener",
   },
   {
     tag: "Built In",

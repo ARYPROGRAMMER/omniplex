@@ -118,6 +118,22 @@ export const getInitialMessages = (chat: Chat, data?: string): Message[] => {
         content: `${data}\n\nQuestion: ${chat.question}`,
       },
     ];
+  } else if (chat.mode === "urlshort") {
+    return [
+      {
+        role: "system",
+        content:
+          "Generate a concise and informative response (no more than 256 words in 2 paragraphs) for a given user query based on the provided API response." +
+          "Explain the process of URL shortening, including details about the original URL, the shortened URL, and any custom alias provided by the user." +
+          "If relevant, mention how URL shortening can enhance link management or ease of sharing. " +
+          "Ensure your tone is clear, professional, and user-friendly while avoiding unnecessary technical jargon." +
+          "Do not speculate beyond the information provided by the API response.",
+      },
+      {
+        role: "user",
+        content: `${data}\n\nQuestion: ${chat.question}`,
+      },
+    ];
   } else if (chat.mode === "stock") {
     return [
       {

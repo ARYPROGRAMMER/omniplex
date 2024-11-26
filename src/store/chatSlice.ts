@@ -6,6 +6,7 @@ import {
   Chat,
   Mode,
   WeatherType,
+  UrlShortType,
   StockType,
   DictionaryType,
   SearchType,
@@ -109,6 +110,17 @@ const chatSlice = createSlice({
     ) => {
       const { threadId, chatIndex, weatherResults } = action.payload;
       state.threads[threadId].chats[chatIndex].weatherResults = weatherResults;
+    },  
+     urlshorted: (
+      state,
+      action: PayloadAction<{
+        threadId: string;
+        chatIndex: number;
+        urlShortResults: UrlShortType;
+      }>
+    ) => {
+      const { threadId, chatIndex, urlShortResults } = action.payload;
+      state.threads[threadId].chats[chatIndex].urlShortResults = urlShortResults;
     },
     updateStock: (
       state,
@@ -176,6 +188,7 @@ export const {
   updateMessage,
   updateSearch,
   updateWeather,
+  urlshorted,
   updateStock,
   updateDictionary,
   updateAnswer,

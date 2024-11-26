@@ -82,7 +82,27 @@ export async function POST(req: Request) {
         },
       },
     },
-    // Add more functions as needed
+    {
+      type: "function",
+      function: {
+        name: "url_shortener",
+        description: "Shorten a given URL and provide the shortened version",
+        parameters: {
+          type: "object",
+          properties: {
+            url: {
+              type: "string",
+              description: "The full URL to be shortened.",
+            },
+            customAlias: {
+              type: "string",
+              description: "Optional custom alias for the shortened URL.",
+            },
+          },
+          required: ["url"],
+        },
+      },
+    },
   ];
 
   try {
