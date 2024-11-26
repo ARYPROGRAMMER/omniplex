@@ -1,3 +1,6 @@
+## Claude Set Up
+![Claude Set-up](https://github.com/user-attachments/assets/3f031e51-4d27-46e9-b29b-1e04a81c5a80)
+
 ![hero](Github.png)
 
 <p align="center">
