@@ -237,7 +237,7 @@ const Sidebar = () => {
           )}
         </>
       )}
-      <Auth isOpen={isOpen} onClose={onClose} />
+      <Auth isOpen={isOpen}/>
     </>
   );
 };

@@ -166,7 +166,7 @@ const History = () => {
           </div>
         </div>
       )}
-      <Auth isOpen={isOpen} onClose={onClose} />
+      <Auth isOpen={isOpen} />
     </div>
   );
 };

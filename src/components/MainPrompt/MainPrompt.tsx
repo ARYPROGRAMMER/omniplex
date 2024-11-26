@@ -408,7 +408,7 @@ const MainPrompt = () => {
           </div>
         </div>
       </div>
-      {modal === "auth" && <Auth isOpen={isOpen} onClose={onClose} />}
+      {modal === "auth" && <Auth isOpen={isOpen}  />}
     </div>
   );
 };
